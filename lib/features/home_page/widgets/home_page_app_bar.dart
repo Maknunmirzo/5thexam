@@ -2,18 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import 'home_page_navigations.dart';
+
 class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HomePageAppBar({super.key});
 
   @override
-  Size get preferredSize => Size(double.infinity, 129.w);
+  Size get preferredSize => Size(double.infinity, 120.h);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SliverPadding(
       padding: EdgeInsets.symmetric(horizontal: 15.w),
-      child: AppBar(
-        toolbarHeight: 129.h,
+      sliver: SliverAppBar(
+        floating: true,
+        pinned: false,
+        snap: true,
+        // toolbarHeight: 129.h,
         backgroundColor: Colors.transparent,
         flexibleSpace: FlexibleSpaceBar(
           background: Image.asset("assets/background.png"),
@@ -61,6 +66,16 @@ class HomePageAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
         ],
+        bottom: PreferredSize(
+            preferredSize: Size(double.infinity, 102.h), child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            HomePageNavigations(icon: "assets/key.svg"),
+            HomePageNavigations(icon: "assets/sale.svg"),
+            HomePageNavigations(icon: "assets/rent.svg"),
+            HomePageNavigations(icon: "assets/rent_out.svg"),
+          ],
+        )),
       ),
     );
   }
